@@ -37,11 +37,14 @@ export default {
   "category_vest_name": "조끼",
   "category_bottoms_name": "하의",
   "category_coat_name": "코트",
+  "category_collection_name": "전체 컬렉션",
   "product_count": "{{count}}개의 상품",
   "sort_latest": "최신순으로 정렬",
   "sort_price_low_high": "가격: 낮은 순",
   "sort_price_high_low": "가격: 높은 순",
   "product_color": "색상",
+  "product_select_color": "색상 선택",
+  "product_selected_colors": "선택됨",
   "product_size": "사이즈",
   "product_material_title": "소재",
   "product_care_title": "관리 방법",
@@ -169,7 +172,6 @@ export default {
   "color_ivory": "아이보리",
   "color_sand": "샌드",
   "color_olive_green": "올리브 그린",
-  
-  "collection_section_title": "추천 컬렉션",
-  "collection_button": "쇼핑하기"
+  "cancel": "취소",
+  "done": "완료"
 }

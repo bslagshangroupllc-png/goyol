@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import type { Product, Category } from '../types';
+import type { Product } from '../types';
 import ProductCard from '../components/ProductCard';
 import Icon from '../components/Icon';
 import { useTranslation } from '../context/i18n';
 
-interface CategoryPageProps {
-  category: Category;
+interface CollectionPageProps {
   products: Product[];
   onViewProduct: (productId: number) => void;
 }
 
-const CategoryPage: React.FC<CategoryPageProps> = ({ category, products, onViewProduct }) => {
+const CollectionPage: React.FC<CollectionPageProps> = ({ products, onViewProduct }) => {
   const { t } = useTranslation();
   const [sortOrder, setSortOrder] = useState('latest');
   const [sortedProducts, setSortedProducts] = useState<Product[]>([]);
@@ -34,12 +33,12 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category, products, onViewP
     };
     sortProducts();
   }, [products, sortOrder]);
-
+  
   return (
     <main className="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12">
       <div className="text-center sm:text-left border-b border-stone-200 pb-6">
-        <h1 className="text-3xl font-semibold tracking-tight">{category.name}</h1>
-        <p className="mt-2 text-sm text-stone-500">{t('product_count', { count: category.productCount })}</p>
+        <h1 className="text-3xl font-semibold tracking-tight">{t('category_collection_name')}</h1>
+        <p className="mt-2 text-sm text-stone-500">{t('product_count', { count: products.length })}</p>
       </div>
       
       <div className="flex justify-end mt-6">
@@ -66,23 +65,8 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ category, products, onViewP
           ))}
         </div>
       </section>
-
-      {category.id === 'men' && (
-        <section className="mt-16 sm:mt-24 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="h-96 bg-pink-200 flex items-center justify-center">
-                 <div className="bg-white p-4 shadow-lg w-40 h-72"></div>
-            </div>
-            <div className="h-96 bg-blue-200 flex items-center justify-center">
-                <div className="bg-white p-4 shadow-lg w-40 h-72"></div>
-            </div>
-            <div className="h-96 bg-teal-200 flex items-center justify-center">
-                <div className="bg-white p-4 shadow-lg w-40 h-72"></div>
-            </div>
-        </section>
-      )}
-
     </main>
   );
 };
 
-export default CategoryPage;
+export default CollectionPage;

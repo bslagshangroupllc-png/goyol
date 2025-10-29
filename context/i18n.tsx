@@ -11,13 +11,14 @@ interface I18nContextType {
     language: Language;
     setLanguage: (lang: Language) => void;
     t: (key: string, params?: { [key: string]: string | number }) => string;
-    formatCurrency: (price: number) => string;
+    formatPrice: (price: number) => string;
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
 export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [language, setLanguage] = useState<Language>('en');
+    const USD_TO_KRW_RATE = 1300;
 
     const t = (key: string, params?: { [key: string]: string | number }) => {
         let text = translations[language][key] || key;
@@ -29,24 +30,16 @@ export const I18nProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return text;
     };
 
-    const formatCurrency = (price: number) => {
+    const formatPrice = (price: number) => {
         if (language === 'ko') {
-            const convertedPrice = price * 1300; // Assuming 1 USD = 1300 KRW
-            return new Intl.NumberFormat('ko-KR', {
-                style: 'currency',
-                currency: 'KRW',
-            }).format(convertedPrice);
+            const krwPrice = price * USD_TO_KRW_RATE;
+            return `₩${krwPrice.toLocaleString('ko-KR')}`;
         }
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
-        }).format(price);
+        return `$${price}`;
     };
 
     return (
-        <I18nContext.Provider value={{ language, setLanguage, t, formatCurrency }}>
+        <I18nContext.Provider value={{ language, setLanguage, t, formatPrice }}>
             {children}
         </I18nContext.Provider>
     );

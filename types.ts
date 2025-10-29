@@ -8,7 +8,7 @@ export interface Product {
   price: number;
   imageUrl: string;
   images: string[];
-  colors: { name: string; hex: string }[];
+  colors: { name: string; hex: string; image: string; }[];
   sizes: string[];
   description: string;
   material: string;

@@ -37,11 +37,14 @@ export default {
   "category_vest_name": "Vests",
   "category_bottoms_name": "Bottoms",
   "category_coat_name": "Coats",
+  "category_collection_name": "Our Collection",
   "product_count": "{{count}} products",
   "sort_latest": "Sort by Latest",
   "sort_price_low_high": "Sort by Price: Low to High",
   "sort_price_high_low": "Sort by Price: High to Low",
   "product_color": "Color",
+  "product_select_color": "Select Color",
+  "product_selected_colors": "Selected",
   "product_size": "Size",
   "product_material_title": "Material",
   "product_care_title": "Care Instructions",
@@ -71,7 +74,7 @@ export default {
   "product_3_care": "Dry clean or hand wash cold. Lay flat to dry. Do not bleach.",
 
   "product_4_name": "Cashmere Cardigan",
-  "product_4_description": "An elegant and versatile cardigan, perfect for layering. Its relaxed fit and a soft texture make it a wardrobe essential.",
+  "product_4_description": "An elegant and versatile cardigan, perfect for layering. Its relaxed fit and soft texture make it a wardrobe essential.",
   "product_4_material": "100% Premium Mongolian Cashmere",
   "product_4_care": "Dry clean or hand wash cold. Lay flat to dry. Do not bleach.",
 
@@ -169,7 +172,6 @@ export default {
   "color_ivory": "Ivory",
   "color_sand": "Sand",
   "color_olive_green": "Olive Green",
-  
-  "collection_section_title": "Featured Collections",
-  "collection_button": "Shop Now"
+  "cancel": "Cancel",
+  "done": "Done"
 }

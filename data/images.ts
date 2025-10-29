@@ -1,99 +1,72 @@
-// Placeholders
-const placeholder400x500 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'%3E%3Crect width='100%25' height='100%25' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='30' fill='%239CA3AF' dominant-baseline='middle' text-anchor='middle'%3E400x500%3C/text%3E%3C/svg%3E";
-const placeholder800x1000 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='1000' viewBox='0 0 800 1000'%3E%3Crect width='100%25' height='100%25' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='50' fill='%239CA3AF' dominant-baseline='middle' text-anchor='middle'%3E800x1000%3C/text%3E%3C/svg%3E";
-const placeholder1800x1000_1 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1000' viewBox='0 0 1800 1000'%3E%3Crect width='100%25' height='100%25' fill='%23D1D5DB'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='100' fill='%236B7280' dominant-baseline='middle' text-anchor='middle'%3ESlide 1%3C/text%3E%3C/svg%3E";
-const placeholder1800x1000_2 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1000' viewBox='0 0 1800 1000'%3E%3Crect width='100%25' height='100%25' fill='%239CA3AF'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='100' fill='%23F3F4F6' dominant-baseline='middle' text-anchor='middle'%3ESlide 2%3C/text%3E%3C/svg%3E";
-const placeholder1800x1000_3 = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1000' viewBox='0 0 1800 1000'%3E%3Crect width='100%25' height='100%25' fill='%236B7280'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='100' fill='%23D1D5DB' dominant-baseline='middle' text-anchor='middle'%3ESlide 3%3C/text%3E%3C/svg%3E";
+// This file now uses a convention-based approach to generate image paths.
+// Simply add your images to the (public) `/product-images/` folder with the correct name.
+// For example:
+// - Product 1's main image: /product-images/product-1-main.jpg
+// - Product 1's first gallery image: /product-images/product-1-gallery-1.jpg
+// - Oatmeal color swatch: /product-images/color-oatmeal.jpg
+// - Logo: /product-images/logo.png
+
+const imagePath = (fileName: string) => `/product-images/${fileName}`;
+
+const generateProductAssets = (id: number, galleryCount: number) => ({
+  main: imagePath(`product-${id}-main.jpg`),
+  gallery: Array.from({ length: galleryCount }, (_, i) => imagePath(`product-${id}-gallery-${i + 1}.jpg`))
+});
 
 export const imageAssets = {
-  logo: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACGCAMAAAC1sTzNAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAllBMVEX///8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMAAAA4TAmRAAAAMXRSTlMAAQIFCAoLDRIVGBscHiEkKSsyNzg8P0JFSEtOUVRXWFxeYGVrgoeOkZSanqKusLe/wMrS1t7v+vE/iAAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfoBh8HNy8xQdD6AAAEFElEQVR42u3d61MTURgG8A8GBQdBERQRcaGAoCAoChZEKCAoKCi4oKigioKCguLe/8LchMlkMpkkl03y+/VpZ87cZJLJzPNp1hQAAAAAAAAAAAAAAAB+m4zG+0KkE15q5Sg8zL5nK5hS1p+L0aP5tLRACO1h3Q4r0R6lRj8a/1W1xY1IkbYrR2H2rJXTU2p692tq9QGkU2p62a+p1QeQTqnpZb+m1tY743p0s/W1tQ5c9yv8Qj0oU4/y8h/tQ5s/o2+vT9++r6vVXwD1oXyM/gC+r5l5/D+rF6vL/y7z6OsbEIT6UB4bEIR6UB4bEIT6UB4bEIT6UB4bEIT6UD7G//Xq4n9a5dFvb0AQ6kN5bEAQ6kN5bEAQ6kN5bEAQ6kN5bEAQ6kP5GP2b1h34/e3//92vWn1h9eP69OlX1RoQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQmpsQhPpQps31gR/L/w8V/Xg46w9XF3+r+gA/kL5nK5hW1i82f8Xj43kAAAAAAAAAAAAAAABA3foH4Wz05w2u/nUAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjQtMDYtMjlUMDc6NTU6NDcrMDA6MDBcE487AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDI0LTA2LTI5VDA3OjU1OjQ3KzAwOjAw+qJpZwAAAABJRU5ErkJggg==",
+  logo: imagePath('logo.png'),
+  
   // Product Images
-  product1: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000, placeholder800x1000, placeholder800x1000, placeholder800x1000],
-  },
-  product2: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000, placeholder800x1000, placeholder800x1000],
-  },
-  product3: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product4: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000, placeholder800x1000],
-  },
-  product5: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product6: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product7: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product8: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product9: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product10: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product11: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product12: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product13: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product14: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product15: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product16: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product17: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product18: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
-  product19: {
-    main: placeholder400x500,
-    gallery: [placeholder800x1000],
-  },
+  product1: generateProductAssets(1, 4),
+  product2: generateProductAssets(2, 3),
+  product3: generateProductAssets(3, 1),
+  product4: generateProductAssets(4, 2),
+  product5: generateProductAssets(5, 1),
+  product6: generateProductAssets(6, 1),
+  product7: generateProductAssets(7, 1),
+  product8: generateProductAssets(8, 1),
+  product9: generateProductAssets(9, 1),
+  product10: generateProductAssets(10, 1),
+  product11: generateProductAssets(11, 1),
+  product12: generateProductAssets(12, 1),
+  product13: generateProductAssets(13, 1),
+  product14: generateProductAssets(14, 1),
+  product15: generateProductAssets(15, 1),
+  product16: generateProductAssets(16, 1),
+  product17: generateProductAssets(17, 1),
+  product18: generateProductAssets(18, 1),
+  product19: generateProductAssets(19, 1),
+  
   // Page Images
   homePage: {
-    hero1: placeholder1800x1000_1,
-    hero2: placeholder1800x1000_2,
-    hero3: placeholder1800x1000_3,
-    promo: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1000' viewBox='0 0 1800 1000'%3E%3Crect width='100%25' height='100%25' fill='%23E5E7EB'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='100' fill='%239CA3AF' dominant-baseline='middle' text-anchor='middle'%3E1800x1000%3C/text%3E%3C/svg%3E",
+    heroImages: [
+      imagePath('hero-1.jpg'), 
+      imagePath('hero-2.jpg'), 
+      imagePath('hero-3.jpg')
+    ],
+    promo: imagePath('promo.jpg'),
   },
-  collections: {
-    couple: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='1000' viewBox='0 0 800 1000'%3E%3Crect width='100%25' height='100%25' fill='%23D1D5DB'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='50' fill='%236B7280' dominant-baseline='middle' text-anchor='middle'%3ECouple%3C/text%3E%3C/svg%3E",
-    christmas: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='1000' viewBox='0 0 800 1000'%3E%3Crect width='100%25' height='100%25' fill='%23FECACA'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='50' fill='%23B91C1C' dominant-baseline='middle' text-anchor='middle'%3EChristmas%3C/text%3E%3C/svg%3E",
-    company: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='1000' viewBox='0 0 800 1000'%3E%3Crect width='100%25' height='100%25' fill='%23BFDBFE'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-size='50' fill='%231E3A8A' dominant-baseline='middle' text-anchor='middle'%3ECompany%3C/text%3E%3C/svg%3E",
+  
+  // Color Swatch Images
+  colors: {
+    oatmeal: imagePath('color-oatmeal.jpg'),
+    charcoal: imagePath('color-charcoal.jpg'),
+    navy: imagePath('color-navy.jpg'),
+    light_grey: imagePath('color-light-grey.jpg'),
+    camel: imagePath('color-camel.jpg'),
+    black: imagePath('color-black.jpg'),
+    espresso: imagePath('color-espresso.jpg'),
+    heather_grey: imagePath('color-heather-grey.jpg'),
+    cream: imagePath('color-cream.jpg'),
+    dusty_rose: imagePath('color-dusty-rose.jpg'),
+    beige: imagePath('color-beige.jpg'),
+    grey: imagePath('color-grey.jpg'),
+    forest_green: imagePath('color-forest-green.jpg'),
+    mustard: imagePath('color-mustard.jpg'),
+    brown: imagePath('color-brown.jpg'),
+    light_pink: imagePath('color-light-pink.jpg'),
+    ivory: imagePath('color-ivory.jpg'),
+    sand: imagePath('color-sand.jpg'),
+    olive_green: imagePath('color-olive-green.jpg'),
   }
 };

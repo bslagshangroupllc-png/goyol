@@ -8,7 +8,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
-  const { t, formatCurrency } = useTranslation();
+  const { t, formatPrice } = useTranslation();
   return (
     <div 
         onClick={onClick}
@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => {
       </div>
       <div className="mt-3 text-center flex-grow flex flex-col justify-between">
         <h3 className="text-sm font-medium text-brand-text">{t(product.name)}</h3>
-        <p className="mt-1 text-sm text-stone-600">{formatCurrency(product.price)}</p>
+        <p className="mt-1 text-sm text-stone-600">{formatPrice(product.price)}</p>
       </div>
     </div>
   );

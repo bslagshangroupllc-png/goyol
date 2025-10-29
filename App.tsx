@@ -4,11 +4,12 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import CollectionPage from './pages/CollectionPage';
 import { products, categories } from './data/mockData';
 import type { Product, Category, CategoryId } from './types';
 import { I18nProvider, useTranslation } from './context/i18n';
 
-export type Page = 'home' | 'category' | 'product';
+export type Page = 'home' | 'category' | 'product' | 'collection';
 
 const AppContent: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -40,7 +41,7 @@ const AppContent: React.FC = () => {
             case 'product':
                 const product = products.find(p => p.id === selectedProductId);
                 if (!product) {
-                    return <HomePage products={products} onViewProduct={handleViewProduct} />;
+                    return <HomePage products={products} onViewProduct={handleViewProduct} onNavigate={handleNavigate} />;
                 }
                 const relatedProducts = products
                     .filter(p => p.category === product.category && p.id !== product.id)
@@ -56,7 +57,7 @@ const AppContent: React.FC = () => {
                 if (selectedCategoryId) {
                     const categoryInfo = categories[selectedCategoryId];
                     if (!categoryInfo) {
-                        return <HomePage products={products} onViewProduct={handleViewProduct} />;
+                        return <HomePage products={products} onViewProduct={handleViewProduct} onNavigate={handleNavigate} />;
                     }
 
                     const categoryProducts = products.filter(p => {
@@ -90,14 +91,16 @@ const AppContent: React.FC = () => {
                         category={category} 
                         products={categoryProducts} 
                         onViewProduct={handleViewProduct}
-                        onNavigate={handleNavigate}
                     />;
                 }
-                 return <HomePage products={products} onViewProduct={handleViewProduct} />;
+                 return <HomePage products={products} onViewProduct={handleViewProduct} onNavigate={handleNavigate} />;
             
+            case 'collection':
+                return <CollectionPage products={products} onViewProduct={handleViewProduct} />;
+
             case 'home':
             default:
-                return <HomePage products={products} onViewProduct={handleViewProduct} />;
+                return <HomePage products={products} onViewProduct={handleViewProduct} onNavigate={handleNavigate} />;
         }
     };
 
